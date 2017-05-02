@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Empresa</title>
+
+<style>
+#formularioCadastrar {
+	display: none;
+}
+
+#formularioConsultar {
+	display: none;
+}
+
+#cadastrarEmpresa {
+	display: none;
+}
+
+#formularioExcluir {
+	display: none;
+}
+
+#formularioAtualizar {
+	display: none;
+}
+</style>
+
+<script type="text/javascript">
+	var menuAtual = null;
+
+	function Cadastrar() {
+
+		anterior = menuAtual;
+		menuAtual = "cadastro";
+
+		var botaocadastrar = document.getElementById("cadastrarEmpresa");
+		botaocadastrar.style.display = 'block';
+
+		var display = document.getElementById("formularioCadastrar").style.display;
+
+		if (anterior != null) {
+			document.getElementById("formularioConsultar").style.display = 'none';
+			document.getElementById("formularioAtualizar").style.display = 'none';
+			document.getElementById("formularioExcluir").style.display = 'none';
+		}
+
+		if (display == "none")
+			document.getElementById("formularioCadastrar").style.display = 'block';
+		else
+			document.getElementById("formularioCadastrar").style.display = 'none';
+
+	}
+
+	function Consultar() {
+
+		anterior = menuAtual;
+		menuAtual = "consultar";
+
+		var display = document.getElementById("formularioConsultar").style.display;
+
+		if (anterior != null) {
+			document.getElementById("formularioCadastrar").style.display = 'none';
+			document.getElementById("formularioAtualizar").style.display = 'none';
+			document.getElementById("formularioExcluir").style.display = 'none';
+		}
+
+		if (display == "none") {
+			document.getElementById("formularioConsultar").style.display = 'block';
+		} else
+			document.getElementById("formularioConsultar").style.display = 'none';
+	}
+
+	function Atualizar() {
+
+		anterior = menuAtual;
+		menuAtual = "atualizar";
+
+		var display = document.getElementById("formularioAtualizar").style.display;
+
+		if (anterior != null) {
+			document.getElementById("formularioCadastrar").style.display = 'none';
+			document.getElementById("formularioConsultar").style.display = 'none';
+			document.getElementById("formularioExcluir").style.display = 'none';
+		}
+
+		if (display == "none") {
+			document.getElementById("formularioAtualizar").style.display = 'block';
+		} else
+			document.getElementById("formularioAtualizar").style.display = 'none';
+
+	}
+
+	function Excluir() {
+		anterior = menuAtual;
+		menuAtual = "excluir";
+
+		var display = document.getElementById("formularioExcluir").style.display;
+
+		if (anterior != null) {
+			document.getElementById("formularioCadastrar").style.display = 'none';
+			document.getElementById("formularioConsultar").style.display = 'none';
+			document.getElementById("formularioAtualizar").style.display = 'none';
+		}
+
+		if (display == "none") {
+			document.getElementById("formularioExcluir").style.display = 'block';
+		} else
+			document.getElementById("formularioExcluir").style.display = 'none';
+	}
+</script>
+</head>
+<body>
+
+	<div id="opcoes">
+		<fieldset>
+			<legend>
+				<h1>Gerenciar Empresa</h1>
+			</legend>
+			<input type="button" onclick="Cadastrar()" value="Cadastrar" /> <input
+				type="button" onclick="Consultar()" value="Consultar" /> <input
+				type="button" onclick="Atualizar()" value="Atualizar" /> <input
+				type="button" onclick="Excluir()" value="Excluir" />
+
+		</fieldset>
+	</div>
+
+	<div id="formularioCadastrar">
+
+		<h3 id="tituloForm">Cadastrar Empresa</h3>
+
+		<form action="empresa" method="post">
+
+
+			<fieldset>
+				<legend>
+					<h4>Dados Sociais</h4>
+				</legend>
+				<label for="Cnpj">CNPJ:</label> <input id="Cnpj" name="cnpj"
+					type="text" /> <label for="razaoSocial">Nome:</label> <input
+					id="razaoSocial" name="razao_social" type="text" />
+			</fieldset>
+
+			<fieldset>
+				<legend>
+					<h4>Dados Funcionamento</h4>
+				</legend>
+				<label for="horarioInicio">Início:</label> <input id="horarioInicio"
+					name="horario_Inicio" type="Time" /> <label for="horarioFim">Fim:</label>
+				<input id="horarioFim" name="horario_Fim" type="Time" />
+			</fieldset>
+
+
+			<fieldset>
+				<legend>
+					<h4>Dados Temperatura</h4>
+				</legend>
+				<label for="horarioArInicio">Início do Funcionamento(Ar):</label> <input
+					id="horarioArInicio" name="horario_ArInicio" type="Time" /> <label
+					for="horarioArFim">Fim do Funcionamento(Ar):</label> <input
+					id="horarioArFim" name="horario_ArFim" type="Time" /> <label
+					for="temperaturaAr">Temperatura: </label> <input id="temperaturaAr"
+					name="Artemperatura" type="number" />
+			</fieldset>
+			<br>
+			<fieldset>
+				<input id="cadastrarEmpresa" type="submit" name="opcao"
+					value="Salvar Empresa" />
+			</fieldset>
+
+
+		</form>
+
+	</div>
+
+	<div id="formularioConsultar">
+
+		<h3>Consultar Empresa</h3>
+
+
+		<fieldset>
+
+			<form action="empresa" method="post">
+				<label for="cnpj">Digite CNPJ da empresa: </label> <input id="cnpj"
+					type="text" name="cnpj" /> <input id="consultarEmpresa"
+					type="submit" name="opcao" value="Consultar Empresa" />
+			</form>
+
+
+		</fieldset>
+
+	</div>
+
+	<div id="formularioExcluir">
+
+		<h3>Excluir Empresa</h3>
+
+
+		<fieldset>
+
+			<form action="empresa" method="post">
+				<label for="cnpj">Digite CNPJ da empresa: </label> <input id="cnpj"
+					type="text" name="cnpj" /> <input id="excluirEmpresa"
+					type="submit" name="opcao" value="Excluir Empresa" />
+			</form>
+
+		</fieldset>
+
+	</div>
+
+
+	<div id="formularioAtualizar">
+
+		<h3>Atualizar Empresa</h3>
+
+		<form action="empresa" method="post">
+
+
+			<fieldset>
+				<legend>
+					<h4>Dados Sociais</h4>
+				</legend>
+				<label for="Cnpj">CNPJ:</label> <input id="Cnpj" name="cnpj"
+					type="text" /> <label for="razaoSocial">Nome:</label> <input
+					id="razaoSocial" name="razao_social" type="text" />
+			</fieldset>
+
+			<fieldset>
+				<legend>
+					<h4>Dados Funcionamento</h4>
+				</legend>
+				<label for="horarioInicio">Início:</label> <input id="horarioInicio"
+					name="horario_Inicio" type="Time" /> <label for="horarioFim">Fim:</label>
+				<input id="horarioFim" name="horario_Fim" type="Time" />
+			</fieldset>
+
+
+			<fieldset>
+				<legend>
+					<h4>Dados Temperatura</h4>
+				</legend>
+				<label for="horarioArInicio">Início do Funcionamento(Ar):</label> <input
+					id="horarioArInicio" name="horario_ArInicio" type="Time" /> <label
+					for="horarioArFim">Fim do Funcionamento(Ar):</label> <input
+					id="horarioArFim" name="horario_ArFim" type="Time" /> <label
+					for="temperaturaAr">Temperatura: </label> <input id="temperaturaAr"
+					name="Artemperatura" type="number" />
+			</fieldset>
+			<br>
+			<fieldset>
+				<input id="atualizarEmpresa" type="submit" name="opcao"
+					value="Salvar Alterações" />
+			</fieldset>
+
+
+		</form>
+
+	</div>
+
+
+</body>
+</html>
